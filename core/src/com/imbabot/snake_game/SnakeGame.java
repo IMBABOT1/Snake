@@ -8,32 +8,33 @@ import com.badlogic.gdx.utils.ScreenUtils;
 
 public class SnakeGame extends ApplicationAdapter {
 	private SpriteBatch batch;
-	private Texture img;
+	private Snake snake;
 
 
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
+		snake = new Snake();
 	}
 
 	@Override
 	public void render () {
 		float dt = Gdx.graphics.getDeltaTime();
 		update(dt);
-		ScreenUtils.clear(1, 0, 0, 1);
+		ScreenUtils.clear(1, 1, 1, 0);
 		batch.begin();
-		batch.draw(img, 0, 0);
+		snake.render(batch);
 		batch.end();
 	}
 
 	public void update(float dt){
-
+		snake.update(dt);
 	}
 
 	@Override
 	public void dispose () {
 		batch.dispose();
-		img.dispose();
+
+
 	}
 }
