@@ -78,7 +78,7 @@ public class Snake {
     }
 
     public void render(SpriteBatch batch){
-        batch.draw(texture, position.x, position.y);
+        batch.draw(texture, position.x - 35, position.y - 35);
     }
 
 }

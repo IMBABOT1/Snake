@@ -9,12 +9,14 @@ import com.badlogic.gdx.utils.ScreenUtils;
 public class SnakeGame extends ApplicationAdapter {
 	private SpriteBatch batch;
 	private Snake snake;
+	private Texture textureGrass;
 
 
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
 		snake = new Snake();
+		textureGrass = new Texture("grass.png");
 	}
 
 	@Override
@@ -23,6 +25,11 @@ public class SnakeGame extends ApplicationAdapter {
 		update(dt);
 		ScreenUtils.clear(1, 1, 1, 0);
 		batch.begin();
+		for (int i = 0; i < 10; i++) {
+			for (int j = 0; j < 10 ; j++) {
+				batch.draw(textureGrass, i * 80, j * 80);
+			}
+		}
 		snake.render(batch);
 		batch.end();
 	}
