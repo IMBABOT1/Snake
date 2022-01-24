@@ -19,6 +19,7 @@ public class Snake {
     private boolean isPressedW;
     private boolean isPressedS;
 
+    private float offset;
 
     public Snake() {
         this.texture = new Texture("Snake.png");
@@ -28,10 +29,12 @@ public class Snake {
         this.isPressedA = false;
         this.isPressedS = false;
         this.isPressedW = false;
+        this.offset = 36;
     }
 
     public void update(float dt){
         movement(dt);
+        checkBounds();
     }
 
     public void movement(float dt){
@@ -77,8 +80,23 @@ public class Snake {
         }
     }
 
+    private void checkBounds(){
+        if (position.x > 800 - offset){
+            position.x = 800 - offset;
+        }
+        if (position.x < 0 + offset){
+            position.x = 0 + offset;
+        }
+        if (position.y > 800 - offset){
+            position.y = 800 - offset;
+        }
+        if (position.y < 0 + offset){
+            position.y = 0 + offset;
+        }
+    }
+
     public void render(SpriteBatch batch){
-        batch.draw(texture, position.x - 35, position.y - 35);
+        batch.draw(texture, position.x - offset, position.y - offset);
     }
 
 }
