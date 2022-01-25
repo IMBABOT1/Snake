@@ -14,15 +14,17 @@ public class SnakeGame extends ApplicationAdapter {
 	private Snake snake;
 	private TextureAtlas atlas;
 	private BitmapFont bitmapFont;
-	private TextureRegion textureGrass;
+	private GameMap gameMap;
+	private Apple apple;
 
 	@Override
 	public void create () {
 		this.atlas = new TextureAtlas("game.pack");
 		this.batch = new SpriteBatch();
-		this.snake = new Snake(atlas);
-		this.textureGrass = atlas.findRegion("grass");
+		this.snake = new Snake(atlas, this);
 		this.bitmapFont = new BitmapFont(Gdx.files.internal("font32.fnt"));
+		this.apple = new Apple(atlas);
+		this.gameMap = new GameMap(atlas);
 	}
 
 	@Override
@@ -31,24 +33,27 @@ public class SnakeGame extends ApplicationAdapter {
 		update(dt);
 		ScreenUtils.clear(1, 1, 1, 0);
 		batch.begin();
-		for (int i = 0; i < 10; i++) {
-			for (int j = 0; j < 10 ; j++) {
-				batch.draw(textureGrass, i * 80, j * 80);
-			}
-		}
+		gameMap.render(batch);
+		apple.render(batch);
 		snake.render(batch);
 		snake.renderGUI(batch, bitmapFont);
 		batch.end();
 	}
 
+	public Apple getApple() {
+		return apple;
+	}
+
+
 	public void update(float dt){
+		gameMap.update(dt);
 		snake.update(dt);
+		apple.update(dt);
 	}
 
 	@Override
 	public void dispose () {
 		batch.dispose();
-
-
+		atlas.dispose();
 	}
 }

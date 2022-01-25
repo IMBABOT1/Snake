@@ -17,3 +17,10 @@ Snake
   orig: 71, 71
   offset: 0, 0
   index: -1
+Apple
+  rotate: false
+  xy: 157, 2
+  size: 71, 71
+  orig: 71, 71
+  offset: 0, 0
+  index: -1

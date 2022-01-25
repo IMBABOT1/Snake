@@ -12,6 +12,7 @@ import com.badlogic.gdx.math.Vector2;
 
 public class Snake {
 
+
     private Vector2 position;
     private TextureRegion texture;
     private float speed;
@@ -25,8 +26,11 @@ public class Snake {
     private StringBuilder stringBuilder;
     private int score;
 
+    private SnakeGame game;
 
-    public Snake(TextureAtlas atlas) {
+
+    public Snake(TextureAtlas atlas, SnakeGame game) {
+        this.game = game;
         this.position = new Vector2(100, 100);
         this.speed = 300.0f;
         this.isPressedD = false;
@@ -37,6 +41,7 @@ public class Snake {
         this.texture = atlas.findRegion("Snake");
         this.stringBuilder = new StringBuilder();
         this.score = 0;
+
     }
 
     public void update(float dt){
@@ -44,8 +49,13 @@ public class Snake {
         checkBounds();
     }
 
+    public Vector2 getPosition() {
+        return position;
+    }
+
 
     public void movement(float dt){
+        eatApple();
         if (Gdx.input.isKeyPressed(Input.Keys.D)){
             if (isPressedA == false){
                 isPressedD = true;
@@ -101,7 +111,17 @@ public class Snake {
         if (position.y < 0 + offset){
             position.y = 0 + offset;
         }
+    }
 
+    private void addScore(int amount){
+        score += amount;
+    }
+
+    private void eatApple(){
+        if (position.dst(game.getApple().getPosition()) < 20){
+            game.getApple().setActive(false);
+            addScore(10);
+        }
     }
 
     public void renderGUI(SpriteBatch batch, BitmapFont font){
@@ -112,5 +132,4 @@ public class Snake {
     public void render(SpriteBatch batch){
         batch.draw(texture, position.x - offset, position.y - offset);
     }
-
 }
