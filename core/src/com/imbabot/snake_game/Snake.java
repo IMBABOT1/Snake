@@ -13,7 +13,8 @@ import com.badlogic.gdx.math.Vector2;
 public class Snake {
 
 
-    private Vector2 position;
+    private float cellX;
+    private float cellY;
     private TextureRegion texture;
     private float speed;
 
@@ -31,13 +32,14 @@ public class Snake {
 
     public Snake(TextureAtlas atlas, GameController game) {
         this.game = game;
-        this.position = new Vector2(100, 100);
-        this.speed = 300.0f;
+        this.cellX = 1;
+        this.cellY = 1;
+        this.speed = 5f;
         this.isPressedD = false;
         this.isPressedA = false;
         this.isPressedS = false;
         this.isPressedW = false;
-        this.offset = 36;
+        this.offset = 40;
         this.texture = atlas.findRegion("Snake");
         this.stringBuilder = new StringBuilder();
         this.score = 0;
@@ -49,9 +51,7 @@ public class Snake {
         checkBounds();
     }
 
-    public Vector2 getPosition() {
-        return position;
-    }
+
 
 
     public void movement(float dt){
@@ -85,32 +85,32 @@ public class Snake {
             }
         }
         if (isPressedA){
-            position.x -= speed * dt;
+            cellX -= speed * dt;
         }
         if (isPressedD){
-            position.x += speed * dt;
+            cellX += speed * dt;
         }
         if (isPressedS){
-            position.y -= speed * dt;
+            cellY -= speed * dt;
         }
         if (isPressedW){
-            position.y += speed * dt;
+            cellY += speed * dt;
         }
     }
 
     private void checkBounds(){
-        if (position.x > 800 - offset){
-            position.x = 800 - offset;
-        }
-        if (position.x < 0 + offset){
-            position.x = 0 + offset;
-        }
-        if (position.y > 800 - offset){
-            position.y = 800 - offset;
-        }
-        if (position.y < 0 + offset){
-            position.y = 0 + offset;
-        }
+//        if (position.x > 800 - offset){
+//            position.x = 800 - offset;
+//        }
+//        if (position.x < 0 + offset){
+//            position.x = 0 + offset;
+//        }
+//        if (position.y > 800 - offset){
+//            position.y = 800 - offset;
+//        }
+//        if (position.y < 0 + offset){
+//            position.y = 0 + offset;
+//        }
     }
 
     private void addScore(int amount){
@@ -118,10 +118,10 @@ public class Snake {
     }
 
     private void eatApple(){
-        if (position.dst(game.getApple().getPosition()) < 50){
-            game.getApple().setActive(false);
-            addScore(10);
-        }
+//        if (position.dst(game.getApple().getPosition()) < 50){
+//            game.getApple().setActive(false);
+//            addScore(10);
+//        }
     }
 
     public void renderGUI(SpriteBatch batch, BitmapFont font){
@@ -130,6 +130,6 @@ public class Snake {
         font.draw(batch, stringBuilder, 10, 790);
     }
     public void render(SpriteBatch batch){
-        batch.draw(texture, position.x - offset, position.y - offset);
+        batch.draw(texture, cellX * GameMap.CELL_SIZE, cellY * GameMap.CELL_SIZE);
     }
 }

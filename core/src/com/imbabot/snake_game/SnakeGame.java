@@ -26,7 +26,7 @@ public class SnakeGame extends ApplicationAdapter {
 	@Override
 	public void render () {
 		float dt = Gdx.graphics.getDeltaTime();
-		update(dt);
+		gc.update(dt);
 		ScreenUtils.clear(1, 1, 1, 0);
 		batch.begin();
 		gc.getGameMap().render(batch);
@@ -37,9 +37,6 @@ public class SnakeGame extends ApplicationAdapter {
 	}
 
 
-	public void update(float dt){
-		gc.update(dt);
-	}
 
 	@Override
 	public void dispose () {

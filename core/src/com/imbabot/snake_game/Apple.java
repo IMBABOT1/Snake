@@ -39,7 +39,7 @@ public class Apple {
         this.topBorder = 780;
         this.position.x = MathUtils.random(leftBorder, topBorder);
         this.position.y = MathUtils.random(leftBorder, topBorder);
-        this.offset = 36;
+        this.offset = 40;
     }
 
     public void render(SpriteBatch batch){

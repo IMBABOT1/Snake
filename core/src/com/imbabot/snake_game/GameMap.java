@@ -8,6 +8,7 @@ public class GameMap {
 
     public static final int CELLS_X = 10;
     public static final int CELLS_Y = 10;
+    public static final int CELL_SIZE = 80;
 
     private TextureRegion grassTexture;
 
@@ -18,7 +19,7 @@ public class GameMap {
     public void render(SpriteBatch batch){
         for (int i = 0; i < CELLS_X; i++) {
             for (int j = 0; j < CELLS_Y; j++) {
-                batch.draw(grassTexture, i * grassTexture.getRegionWidth(), j * grassTexture.getRegionHeight());
+                batch.draw(grassTexture, i * CELL_SIZE, j * CELL_SIZE);
             }
         }
     }
