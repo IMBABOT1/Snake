@@ -5,13 +5,15 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 
 
 public class Snake {
 
     private Vector2 position;
-    private Texture texture;
+    private TextureRegion texture;
     private float speed;
 
     private boolean isPressedD;
@@ -21,10 +23,10 @@ public class Snake {
 
     private float offset;
     private StringBuilder stringBuilder;
+    private int score;
 
 
-    public Snake() {
-        this.texture = new Texture("Snake.png");
+    public Snake(TextureAtlas atlas) {
         this.position = new Vector2(100, 100);
         this.speed = 300.0f;
         this.isPressedD = false;
@@ -32,7 +34,9 @@ public class Snake {
         this.isPressedS = false;
         this.isPressedW = false;
         this.offset = 36;
+        this.texture = atlas.findRegion("Snake");
         this.stringBuilder = new StringBuilder();
+        this.score = 0;
     }
 
     public void update(float dt){
@@ -102,7 +106,7 @@ public class Snake {
 
     public void renderGUI(SpriteBatch batch, BitmapFont font){
         stringBuilder.setLength(0);
-        stringBuilder.append("Score: ");
+        stringBuilder.append("Score: " + score);
         font.draw(batch, stringBuilder, 10, 790);
     }
     public void render(SpriteBatch batch){

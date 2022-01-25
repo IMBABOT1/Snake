@@ -5,19 +5,23 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 public class SnakeGame extends ApplicationAdapter {
 	private SpriteBatch batch;
 	private Snake snake;
-	private Texture textureGrass;
+	private TextureAtlas atlas;
 	private BitmapFont bitmapFont;
+	private TextureRegion textureGrass;
 
 	@Override
 	public void create () {
+		this.atlas = new TextureAtlas("game.pack");
 		this.batch = new SpriteBatch();
-		this.snake = new Snake();
-		this.textureGrass = new Texture("grass.png");
+		this.snake = new Snake(atlas);
+		this.textureGrass = atlas.findRegion("grass");
 		this.bitmapFont = new BitmapFont(Gdx.files.internal("font32.fnt"));
 	}
 
