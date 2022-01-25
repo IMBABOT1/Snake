@@ -26,10 +26,10 @@ public class Snake {
     private StringBuilder stringBuilder;
     private int score;
 
-    private SnakeGame game;
+    private GameController game;
 
 
-    public Snake(TextureAtlas atlas, SnakeGame game) {
+    public Snake(TextureAtlas atlas, GameController game) {
         this.game = game;
         this.position = new Vector2(100, 100);
         this.speed = 300.0f;
