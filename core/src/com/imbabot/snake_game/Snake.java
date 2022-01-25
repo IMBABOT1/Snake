@@ -13,6 +13,12 @@ import com.badlogic.gdx.math.Vector2;
 public class Snake {
 
 
+    private int rightBorder;
+    private int leftBorder;
+    private int top;
+    private int bottom;
+
+
     private float cellX;
     private float cellY;
     private TextureRegion texture;
@@ -43,12 +49,31 @@ public class Snake {
         this.texture = atlas.findRegion("Snake");
         this.stringBuilder = new StringBuilder();
         this.score = 0;
+        this.leftBorder = 0;
+        this.rightBorder = 9;
+        this.top = 9;
+        this.bottom = 0;
 
     }
 
     public void update(float dt){
         movement(dt);
         checkBounds();
+    }
+
+    private void checkBounds() {
+        if (cellX > rightBorder) {
+            cellX = rightBorder;
+        }
+        if (cellX < leftBorder) {
+            cellX = leftBorder;
+        }
+        if (cellY > top) {
+            cellY = top;
+        }
+        if (cellY < bottom) {
+            cellY = bottom;
+        }
     }
 
 
@@ -98,20 +123,6 @@ public class Snake {
         }
     }
 
-    private void checkBounds(){
-//        if (position.x > 800 - offset){
-//            position.x = 800 - offset;
-//        }
-//        if (position.x < 0 + offset){
-//            position.x = 0 + offset;
-//        }
-//        if (position.y > 800 - offset){
-//            position.y = 800 - offset;
-//        }
-//        if (position.y < 0 + offset){
-//            position.y = 0 + offset;
-//        }
-    }
 
     private void addScore(int amount){
         score += amount;
