@@ -10,6 +10,14 @@ public class GameMap {
     public static final int CELLS_Y = 10;
     public static final int CELL_SIZE = 80;
 
+    public int getCellsX() {
+        return CELLS_X - 1;
+    }
+
+    public int getCellsY() {
+        return CELLS_Y - 1;
+    }
+
     private TextureRegion grassTexture;
 
     public GameMap(TextureAtlas atlas){

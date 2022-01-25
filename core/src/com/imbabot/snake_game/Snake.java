@@ -50,8 +50,8 @@ public class Snake {
         this.stringBuilder = new StringBuilder();
         this.score = 0;
         this.leftBorder = 0;
-        this.rightBorder = 9;
-        this.top = 9;
+        this.rightBorder = game.getGameMap().getCellsX();
+        this.top = game.getGameMap().getCellsY();
         this.bottom = 0;
 
     }
