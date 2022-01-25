@@ -18,6 +18,7 @@ public class Apple {
     private TextureRegion textureApple;
 
     private boolean isActive;
+    private float offset;
 
 
     public Vector2 getPosition() {
@@ -32,16 +33,17 @@ public class Apple {
         this.textureApple = atlas.findRegion("Apple");
         this.isActive = false;
         this.position = new Vector2(0, 0);
-        this.position.x = MathUtils.random(0, 800);
-        this.position.y = MathUtils.random(0, 800);
+        this.position.x = MathUtils.random(50, 750);
+        this.position.y = MathUtils.random(50, 750);
+        this.offset = 36;
     }
 
     public void render(SpriteBatch batch){
         if (isActive) {
-            batch.draw(textureApple, position.x, position.y);
+            batch.draw(textureApple, position.x - offset, position.y - offset);
         }else {
-            position.x = MathUtils.random(800);
-            position.y = MathUtils.random(800);
+            position.x = MathUtils.random(50,750);
+            position.y = MathUtils.random(50,750);
             isActive = true;
         }
     }

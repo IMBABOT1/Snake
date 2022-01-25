@@ -118,7 +118,7 @@ public class Snake {
     }
 
     private void eatApple(){
-        if (position.dst(game.getApple().getPosition()) < 20){
+        if (position.dst(game.getApple().getPosition()) < 50){
             game.getApple().setActive(false);
             addScore(10);
         }
