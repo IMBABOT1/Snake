@@ -3,10 +3,10 @@ package com.imbabot.snake_game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
-import java.util.Vector;
 
 public class Snake {
 
@@ -20,6 +20,8 @@ public class Snake {
     private boolean isPressedS;
 
     private float offset;
+    private StringBuilder stringBuilder;
+
 
     public Snake() {
         this.texture = new Texture("Snake.png");
@@ -30,12 +32,14 @@ public class Snake {
         this.isPressedS = false;
         this.isPressedW = false;
         this.offset = 36;
+        this.stringBuilder = new StringBuilder();
     }
 
     public void update(float dt){
         movement(dt);
         checkBounds();
     }
+
 
     public void movement(float dt){
         if (Gdx.input.isKeyPressed(Input.Keys.D)){
@@ -93,8 +97,14 @@ public class Snake {
         if (position.y < 0 + offset){
             position.y = 0 + offset;
         }
+
     }
 
+    public void renderGUI(SpriteBatch batch, BitmapFont font){
+        stringBuilder.setLength(0);
+        stringBuilder.append("Score: ");
+        font.draw(batch, stringBuilder, 10, 790);
+    }
     public void render(SpriteBatch batch){
         batch.draw(texture, position.x - offset, position.y - offset);
     }

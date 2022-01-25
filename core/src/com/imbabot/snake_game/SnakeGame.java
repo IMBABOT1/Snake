@@ -3,6 +3,7 @@ package com.imbabot.snake_game;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 
@@ -10,13 +11,14 @@ public class SnakeGame extends ApplicationAdapter {
 	private SpriteBatch batch;
 	private Snake snake;
 	private Texture textureGrass;
-
+	private BitmapFont bitmapFont;
 
 	@Override
 	public void create () {
-		batch = new SpriteBatch();
-		snake = new Snake();
-		textureGrass = new Texture("grass.png");
+		this.batch = new SpriteBatch();
+		this.snake = new Snake();
+		this.textureGrass = new Texture("grass.png");
+		this.bitmapFont = new BitmapFont(Gdx.files.internal("font32.fnt"));
 	}
 
 	@Override
@@ -31,6 +33,7 @@ public class SnakeGame extends ApplicationAdapter {
 			}
 		}
 		snake.render(batch);
+		snake.renderGUI(batch, bitmapFont);
 		batch.end();
 	}
 
