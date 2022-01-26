@@ -14,6 +14,7 @@ import com.badlogic.gdx.math.Vector2;
 
 public class Apple {
 
+
     private int cellX;
     private int cellY;
     private TextureRegion textureApple;
@@ -23,6 +24,13 @@ public class Apple {
     private int leftBorder;
     private int topBorder;
 
+    public int getCellX() {
+        return cellX;
+    }
+
+    public int getCellY() {
+        return cellY;
+    }
 
 
     public void setActive(boolean active) {

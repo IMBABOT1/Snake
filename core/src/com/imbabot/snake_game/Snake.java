@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Vector2;
 
 
 public class Snake {
@@ -36,6 +35,7 @@ public class Snake {
     private GameController game;
 
 
+
     public Snake(TextureAtlas atlas, GameController game) {
         this.game = game;
         this.cellX = 1;
@@ -59,6 +59,7 @@ public class Snake {
     public void update(float dt){
         movement(dt);
         checkBounds();
+
     }
 
     private void checkBounds() {
@@ -75,7 +76,6 @@ public class Snake {
             cellY = bottom;
         }
     }
-
 
 
 
